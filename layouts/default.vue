@@ -21,18 +21,17 @@ export default {
   },
 
   head: {
-    title: 'Schlossbauer Haimendorf',
+    title: 'Feuerwehr Günzenhausen',
     meta: [
       {
         hid: 'description',
         name: 'description',
-        content: 'Dies ist die Internetpräsenz der Schlossbauern in Haimendorf',
+        content: 'Dies ist die Internetpräsenz der Feuerwehr Günzenhausen',
       },
       {
         hid: 'keywords',
         name: 'keywords',
-        content:
-          'schlossbauer, haimendorf, bauernhof haimendorf, schlossbauer haimendorf,zimmer haimendorf, zimmer Montagearbeiter',
+        content: 'günzenhausen, feuerwehr, eching, feuerwehr günzenhausen',
       },
     ],
   },

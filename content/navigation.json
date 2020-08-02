@@ -5,8 +5,8 @@
             "label": "Home"
         },
         {
-            "to": "/about",
-            "label": "About"
+            "to": "/alerts",
+            "label": "Einsätze"
         },
         {
             "to": "/posts",
