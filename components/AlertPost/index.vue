@@ -1,48 +1,42 @@
 <template>
   <article>
-    <nuxt-link :to="`alerts/${id}`">
-      <div class="flex flex-wrap items-center">
-        <div v-if="imgSrc" class="w-full bg-gray-100">
-          <img
-            v-if="imgSrc"
-            class="w-full h-56 object-cover"
-            :src="imgSrc"
-            alt="Alert image"
-          />
-        </div>
+    <PostHeader :img-src="imgSrc">
+      <AlertOutline />
+    </PostHeader>
 
-        <div class="p-4">
-          <h1 class="mt-0">{{ title }}</h1>
-          <div class="flex mb-3 items-center">
-            <QueryBuilderBlack class="flex-none" />
-            <div class="ml-3">{{ formattedTime }}</div>
-          </div>
-          <div class="flex mb-3 items-center">
-            <Place class="flex-none" />
-            <div class="ml-3 overflow-hidden">
-              {{ address }}
-            </div>
-          </div>
-          <div class="flex mb-3 items-center">
-            <ErrorOutline class="flex-none" />
-            <div class="ml-3">{{ message }}</div>
-          </div>
-        </div>
-      </div>
-    </nuxt-link>
+    <h1>{{ title }}</h1>
+
+    <AlertInfo
+      :time="time"
+      :address="address"
+      :message="message"
+      :title="title"
+    />
+
+    <div class="mt-6">
+      Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy
+      eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam
+      voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet
+      clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit
+      amet. Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam
+      nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed
+      diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum.
+      Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor
+      sit amet.
+    </div>
   </article>
 </template>
 
 <script>
-import QueryBuilderBlack from '@/assets/icons/query_builder-black-36dp.svg'
-import Place from '@/assets/icons/place-black-36dp.svg'
-import ErrorOutline from '@/assets/icons/error_outline-black-36dp.svg'
+import AlertOutline from '@/assets/icons/notifications_none-white-48dp.svg'
+import PostHeader from '@/components/PostHeader'
+import AlertInfo from '@/components/AlertInfo'
 
 export default {
   components: {
-    QueryBuilderBlack,
-    Place,
-    ErrorOutline,
+    PostHeader,
+    AlertOutline,
+    AlertInfo,
   },
 
   props: {

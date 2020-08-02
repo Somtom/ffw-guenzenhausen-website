@@ -1,53 +1,32 @@
 <template>
-  <nuxt-link :to="`alerts/${id}`">
+  <nuxt-link :to="`/alerts/${id}`">
     <div class="max-w-md w-full lg:max-w-full lg:flex my-3">
-      <div
-        class="rounded-t lg:rounded-l lg:rounded-t-none h-48 lg:h-auto lg:w-56 flex-none bg-cover text-center overflow-hidden shadow-md bg-gray-400"
-        :style="`background-image: url('${imgSrc}')`"
-      >
-        <div
-          v-if="!imgSrc"
-          class="flex items-center justify-center h-full w-full"
-        >
-          <AlertOutline />
-        </div>
-      </div>
+      <PreviewImage :img-src="imgSrc">
+        <AlertOutline />
+      </PreviewImage>
 
       <div
         class="border-r border-b border-l border-gray-400 lg:border-l-0 lg:border-t lg:border-gray-400 bg-white rounded-b lg:rounded-b-none lg:rounded-r p-4 flex flex-col justify-between leading-normal shadow-md"
       >
-        <h1 class="text-2xl mt-0">{{ title }}</h1>
-        <div class="flex mb-3 items-center">
-          <QueryBuilderBlack class="flex-none" />
-          <div class="ml-3">{{ formattedTime }}</div>
-        </div>
-        <div class="flex mb-3 items-center">
-          <Place class="flex-none" />
-          <div class="ml-3">
-            {{ address }}
-          </div>
-        </div>
-        <div class="flex mb-3 items-center">
-          <ErrorOutline class="flex-none" />
-          <div class="ml-3">{{ message }}</div>
-        </div>
+        <h1 class="text-2xl mt-0">
+          {{ title }}
+        </h1>
+        <AlertInfo :time="time" :address="address" :message="message" />
       </div>
     </div>
   </nuxt-link>
 </template>
 
 <script>
-import QueryBuilderBlack from '@/assets/icons/query_builder-black-36dp.svg'
-import Place from '@/assets/icons/place-black-36dp.svg'
-import ErrorOutline from '@/assets/icons/error_outline-black-36dp.svg'
 import AlertOutline from '@/assets/icons/notifications_none-white-48dp.svg'
+import PreviewImage from '@/components/PreviewImage'
+import AlertInfo from '@/components/AlertInfo'
 
 export default {
   components: {
-    QueryBuilderBlack,
-    Place,
-    ErrorOutline,
+    PreviewImage,
     AlertOutline,
+    AlertInfo,
   },
 
   props: {
@@ -74,12 +53,6 @@ export default {
     imgSrc: {
       type: String,
       default: null,
-    },
-  },
-
-  computed: {
-    formattedTime() {
-      return new Date(this.time).toLocaleString()
     },
   },
 }
