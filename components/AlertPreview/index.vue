@@ -1,12 +1,12 @@
 <template>
-  <nuxt-link :to="`/alerts/${id}`">
-    <div class="max-w-md w-full lg:max-w-full lg:flex my-3">
+  <nuxt-link :to="fullSlug">
+    <div class="lg:flex my-3 justify-center">
       <PreviewImage :img-src="imgSrc">
         <AlertOutline />
       </PreviewImage>
 
       <div
-        class="border-r border-b border-l border-gray-400 lg:border-l-0 lg:border-t lg:border-gray-400 bg-white rounded-b lg:rounded-b-none lg:rounded-r p-4 flex flex-col justify-between leading-normal shadow-md"
+        class="flex flex-col w-full border-r border-b border-l border-gray-400 lg:border-l-0 lg:border-t lg:border-gray-400 bg-white rounded-b lg:rounded-b-none lg:rounded-r p-4 justify-between leading-normal shadow-md"
       >
         <h1 class="text-2xl mt-0">
           {{ title }}
@@ -30,12 +30,12 @@ export default {
   },
 
   props: {
-    id: {
+    fullSlug: {
       type: String,
       required: true,
     },
     time: {
-      type: Number,
+      type: String,
       required: true,
     },
     title: {

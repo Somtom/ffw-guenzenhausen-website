@@ -1,0 +1,9 @@
+query StoryContent($fullSlug: ID!) {
+  ContentNode(id: $fullSlug, resolve_relations: "author,category") {
+    content
+    id
+    alternates {
+      fullSlug
+    }
+  }
+}

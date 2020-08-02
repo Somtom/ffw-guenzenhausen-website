@@ -1,0 +1,16 @@
+{
+  AlertpostItems(sort_by:"created_at:desc"){
+    items {
+      full_slug
+      content {
+        address
+        titleImage {
+            filename
+        }
+        message
+        time
+        title
+      }
+    }
+  }
+}

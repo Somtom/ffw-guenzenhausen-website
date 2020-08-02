@@ -31,7 +31,7 @@ export default {
 
   props: {
     time: {
-      type: Number,
+      type: String,
       required: true,
     },
     address: {

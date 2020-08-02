@@ -1,25 +1,36 @@
 <template>
   <div>
     <AlertPreview
-      v-for="(a, index) in alerts"
-      :id="a.slug"
-      :key="index"
-      v-bind="a"
+      v-for="alert in alerts"
+      :key="alert.full_slug"
+      :full-slug="alert.full_slug"
+      :img-src="alert.content.titleImage.filename"
+      v-bind="alert.content"
     ></AlertPreview>
   </div>
 </template>
 
 <script>
 import AlertPreview from '@/components/AlertPreview'
+import query from './query.graphql'
 export default {
   components: {
     AlertPreview,
   },
 
-  async asyncData({ $content }) {
-    const alerts = await $content('alerts').sortBy('time', 'desc').fetch()
-    console.log(alerts)
-    return { alerts }
+  data() {
+    return {
+      alerts: [],
+    }
+  },
+
+  apollo: {
+    alerts: {
+      query,
+      update(data) {
+        return data.AlertpostItems.items
+      },
+    },
   },
 }
 </script>

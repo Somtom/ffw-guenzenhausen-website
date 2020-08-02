@@ -1,3 +1,7 @@
+require('dotenv').config()
+
+const { STORYBLOK_TOKEN } = require('./helpers/config')
+
 export default {
   /*
    ** Nuxt rendering mode
@@ -60,12 +64,39 @@ export default {
     // Doc: https://github.com/nuxt/content
     '@nuxt/content',
     'nuxt-svg-loader',
+    [
+      'storyblok-nuxt',
+      {
+        accessToken: STORYBLOK_TOKEN,
+        cacheProvider: 'memory',
+        customParent: 'YOUR_URL_WHERE_RUN_STORYBLOK_APP', // optional https://www.storyblok.com/docs/Guides/storyblok-latest-js#storyblokinitconfig
+      },
+    ],
+    '@nuxtjs/apollo',
   ],
   /*
    ** Axios module configuration
    ** See https://axios.nuxtjs.org/options
    */
   axios: {},
+
+  apollo: {
+    defaultOptions: {
+      $query: {
+        loadingKey: 'loading',
+        fetchPolicy: 'network-only',
+      },
+    },
+    clientConfigs: {
+      default: '@/plugins/apollo-config/storyblokClient.js',
+      defaultClient: '@/plugins/apollo-config/storyblokClient.js',
+    },
+  },
+
+  env: {
+    STORYBLOK_TOKEN,
+  },
+
   /*
    ** Content module configuration
    ** See https://content.nuxtjs.org/configuration
