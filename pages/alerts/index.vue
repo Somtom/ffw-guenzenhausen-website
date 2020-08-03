@@ -4,7 +4,7 @@
       v-for="alert in alerts"
       :key="alert.full_slug"
       :full-slug="alert.full_slug"
-      :img-src="alert.content.titleImage.filename"
+      :img-src="previewImage(alert)"
       v-bind="alert.content"
     ></AlertPreview>
   </div>
@@ -30,6 +30,15 @@ export default {
       update(data) {
         return data.AlertpostItems.items
       },
+    },
+  },
+
+  methods: {
+    previewImage(alert) {
+      console.log(alert)
+      return alert.content.previewImage
+        ? alert.content.previewImage.filename
+        : ''
     },
   },
 }

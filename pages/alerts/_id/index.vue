@@ -1,10 +1,6 @@
 <template>
   <div>
-    <AlertPost
-      v-bind="post"
-      :html-text="htmlText"
-      :img-src="post.titleImage.filename"
-    ></AlertPost>
+    <AlertPost v-bind="post"></AlertPost>
   </div>
 </template>
 
@@ -28,12 +24,6 @@ export default {
     console.log(res)
     const post = res.story.content
     return { post }
-  },
-
-  computed: {
-    htmlText() {
-      return this.$storyapi.richTextResolver.render(this.post.text)
-    },
   },
 }
 </script>

@@ -1,9 +1,5 @@
 <template>
   <article>
-    <PostHeader :img-src="imgSrc">
-      <AlertOutline />
-    </PostHeader>
-
     <h1>{{ title }}</h1>
 
     <AlertInfo
@@ -14,19 +10,19 @@
     />
 
     <div class="mt-8" v-html="htmlText"></div>
+
+    <ImageGrid :images="images" />
   </article>
 </template>
 
 <script>
-import AlertOutline from '@/assets/icons/notifications_none-white-48dp.svg'
-import PostHeader from '@/components/PostHeader'
 import AlertInfo from '@/components/AlertInfo'
+import ImageGrid from '@/components/ImageGrid'
 
 export default {
   components: {
-    PostHeader,
-    AlertOutline,
     AlertInfo,
+    ImageGrid,
   },
 
   props: {
@@ -46,13 +42,19 @@ export default {
       type: String,
       required: true,
     },
-    imgSrc: {
-      type: String,
-      default: null,
-    },
-    htmlText: {
+    text: {
       type: String,
       default: '',
+    },
+    images: {
+      type: Array,
+      default: () => [],
+    },
+  },
+
+  computed: {
+    htmlText() {
+      return this.$storyapi.richTextResolver.render(this.text)
     },
   },
 }
