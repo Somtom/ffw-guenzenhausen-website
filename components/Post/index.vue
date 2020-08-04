@@ -1,14 +1,11 @@
 <template>
   <article>
-    <h1>{{ title }}</h1>
+    <PostHeader v-if="titleImage.filename" :img-src="titleImage.filename" />
 
-    <AlertInfo
-      :time="time"
-      :address="address"
-      :message="message"
-      :title="title"
-    />
-
+    <div class="flex justify-between">
+      <h1>{{ title }}</h1>
+      <div class="text-gray-400 mt-6">{{ formattedTime }}</div>
+    </div>
     <div class="mt-8 text-xl" v-html="htmlText"></div>
 
     <ImageGrid :images="images" />
@@ -16,12 +13,12 @@
 </template>
 
 <script>
-import AlertInfo from '@/components/AlertInfo'
+import PostHeader from '@/components/PostHeader'
 import ImageGrid from '@/components/ImageGrid'
 
 export default {
   components: {
-    AlertInfo,
+    PostHeader,
     ImageGrid,
   },
 
@@ -34,15 +31,11 @@ export default {
       type: String,
       required: true,
     },
-    address: {
-      type: String,
-      required: true,
-    },
-    message: {
-      type: String,
-      required: true,
-    },
     text: {
+      type: String,
+      default: '',
+    },
+    titleImage: {
       type: Object,
       default: () => {},
     },
@@ -53,6 +46,10 @@ export default {
   },
 
   computed: {
+    formattedTime() {
+      return new Date(this.time).toLocaleString()
+    },
+
     htmlText() {
       return this.$storyapi.richTextResolver.render(this.text)
     },

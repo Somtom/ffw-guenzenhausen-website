@@ -1,6 +1,7 @@
 query StoryContent($fullSlug: ID!) {
   ContentNode(id: $fullSlug, resolve_relations: "author,category") {
     content
+    first_published_at
     id
     alternates {
       fullSlug

@@ -1,0 +1,15 @@
+{
+  PostItems(sort_by:"created_at:desc"){
+    items {
+      full_slug
+      content {
+        previewImage {
+            filename
+        }
+        title
+        text
+      }
+      first_published_at
+    }
+  }
+}
