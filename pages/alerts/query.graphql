@@ -1,7 +1,8 @@
-{
-  AlertpostItems(sort_by:"created_at:desc"){
+query Alerts($currentPage: Int $pageSize: Int $dateStart: String $dateEnd: String){
+  AlertpostItems(sort_by:"created_at:desc" page:$currentPage per_page:$pageSize first_published_at_gt:$dateStart first_published_at_lt:$dateEnd){
+    total
     items {
-      full_slug
+      full_slug 
       content {
         address
         previewImage {
