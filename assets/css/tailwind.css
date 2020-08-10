@@ -1,12 +1,12 @@
 @tailwind base;
 
-h1 {
+article h1 {
     @apply text-4xl mt-4 mb-3;
 }
-h2 {
+article h2 {
     @apply text-2xl mt-4 mb-3;
 }
-h3 {
+article h3 {
     @apply text-xl mt-4 mb-3;
 }
 .nuxt-content a {

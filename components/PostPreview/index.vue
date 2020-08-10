@@ -2,7 +2,7 @@
   <nuxt-link :to="fullSlug">
     <div class="lg:h-56 lg:flex my-3 justify-center">
       <PreviewImage :img-src="imgPreview">
-        <AlertOutline />
+        <CropOriginal />
       </PreviewImage>
 
       <div
@@ -17,21 +17,21 @@
           </div>
         </div>
 
-        <div class="text-lg mt-3" v-html="previewText"></div>
+        <div class="text-lg mt-3 font-normal" v-html="previewText"></div>
       </div>
     </div>
   </nuxt-link>
 </template>
 
 <script>
-import AlertOutline from '@/assets/icons/notifications_none-white-48dp.svg'
+import CropOriginal from '@/assets/icons/crop_original-white-48dp.svg'
 import transformImage from '@/helpers/transformImage'
 import PreviewImage from '@/components/PreviewImage'
 
 export default {
   components: {
     PreviewImage,
-    AlertOutline,
+    CropOriginal,
   },
 
   props: {
@@ -63,10 +63,11 @@ export default {
     },
 
     previewText() {
-      const text = this.$storyapi.richTextResolver
-        .render(this.text)
-        .slice(0, 250)
-      return `${text} ...`
+      let text = this.$storyapi.richTextResolver.render(this.text)
+      if (text.length > 250) {
+        text = `${text.slice(0, 250)}...`
+      }
+      return text
     },
 
     imgPreview() {
