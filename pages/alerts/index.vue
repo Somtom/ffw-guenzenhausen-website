@@ -18,6 +18,7 @@
 import AlertPreview from '@/components/AlertPreview'
 import Paginator from '@/components/Paginator'
 import query from './query.graphql'
+
 export default {
   components: {
     AlertPreview,

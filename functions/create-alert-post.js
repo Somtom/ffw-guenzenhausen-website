@@ -6,31 +6,30 @@ const Storyblok = new StoryblokClient({
 
 exports.handler = function (event, context, callback) {
   const alert = JSON.parse(event.body)
+  console.log('Alert: ', alert)
   let statusCode = 401
 
   if (ALERT_FUNCTION_TOKEN === event.queryStringParameters.token) {
     // Create alert story
+    const time = new Date(alert.ts_create * 1000)
+    const name = `${time.toISOString().substr(0, 10)} - ${alert.title}`
     Storyblok.post('spaces/90003/stories/', {
       story: {
-        name: alert.id,
+        name,
         slug: alert.id,
         parent_id: 16915628,
         content: {
           component: 'AlertPost',
           title: alert.title || alert.message,
-          time: new Date(alert.ts_create * 1000),
+          time,
           address: alert.address,
-          message: alert.text,
+          message: alert.title,
         },
       },
-      publish: 1,
+      publish: 0,
+    }).catch((error) => {
+      console.log(error)
     })
-      .then((response) => {
-        console.log(response)
-      })
-      .catch((error) => {
-        console.log(error)
-      })
 
     statusCode = 200
   }

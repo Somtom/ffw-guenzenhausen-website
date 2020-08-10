@@ -32,8 +32,8 @@ export default {
       required: true,
     },
     text: {
-      type: String,
-      default: '',
+      type: Object,
+      default: () => {},
     },
     titleImage: {
       type: Object,
@@ -47,7 +47,7 @@ export default {
 
   computed: {
     formattedTime() {
-      return new Date(this.time).toLocaleString()
+      return new Date(this.time).toLocaleDateString()
     },
 
     htmlText() {

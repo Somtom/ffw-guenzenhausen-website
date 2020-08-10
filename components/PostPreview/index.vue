@@ -1,6 +1,6 @@
 <template>
   <nuxt-link :to="fullSlug">
-    <div class="h-56 lg:flex my-3 justify-center">
+    <div class="lg:h-56 lg:flex my-3 justify-center">
       <PreviewImage :img-src="imgSrc">
         <AlertOutline />
       </PreviewImage>
@@ -47,8 +47,8 @@ export default {
       required: true,
     },
     text: {
-      type: String,
-      default: '',
+      type: Object,
+      default: () => {},
     },
     imgSrc: {
       type: String,
@@ -58,7 +58,7 @@ export default {
 
   computed: {
     formattedTime() {
-      return new Date(this.time).toLocaleString()
+      return new Date(this.time).toLocaleDateString()
     },
 
     previewText() {

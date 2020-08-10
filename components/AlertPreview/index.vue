@@ -1,6 +1,6 @@
 <template>
   <nuxt-link :to="fullSlug">
-    <div class="lg:flex my-3 justify-center">
+    <div class="lg:h-56 lg:flex my-3 justify-center">
       <PreviewImage :img-src="imgSrc">
         <AlertOutline />
       </PreviewImage>

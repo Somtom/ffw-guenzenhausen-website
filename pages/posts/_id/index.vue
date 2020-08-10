@@ -19,7 +19,6 @@ export default {
   async asyncData({ $content, params, app, route, error }) {
     const res = await getStoryblokStory(app, route, error)
     const post = res.story.content
-    post.time = res.story.first_published_at
     return { post }
   },
 }
