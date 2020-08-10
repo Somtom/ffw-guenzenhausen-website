@@ -1,7 +1,7 @@
 <template>
   <nuxt-link :to="fullSlug">
     <div class="lg:h-56 lg:flex my-3 justify-center">
-      <PreviewImage :img-src="imgSrc">
+      <PreviewImage :img-src="imgPreview">
         <AlertOutline />
       </PreviewImage>
 
@@ -25,6 +25,7 @@
 
 <script>
 import AlertOutline from '@/assets/icons/notifications_none-white-48dp.svg'
+import transformImage from '@/helpers/transformImage'
 import PreviewImage from '@/components/PreviewImage'
 
 export default {
@@ -66,6 +67,10 @@ export default {
         .render(this.text)
         .slice(0, 250)
       return `${text} ...`
+    },
+
+    imgPreview() {
+      return transformImage(this.imgSrc, '400x400')
     },
   },
 }
