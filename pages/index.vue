@@ -5,12 +5,15 @@
 </template>
 
 <script>
+import storyblokLivePreview from '@/mixins/storyblok-live-preview'
+import getStoryblokStory from '@/helpers/get-storyblok-story'
+
 export default {
-  async asyncData({ $content, params }) {
-    const page = await $content('pages/index').fetch()
-    return {
-      page,
-    }
+  mixins: [storyblokLivePreview],
+  async asyncData({ app, route, error }) {
+    const res = await getStoryblokStory(app, route, error)
+    const blok = res.story.content
+    return { blok }
   },
 }
 </script>

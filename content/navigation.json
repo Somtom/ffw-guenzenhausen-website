@@ -9,6 +9,10 @@
             "label": "Einsätze"
         },
         {
+            "to": "/ueber-uns",
+            "label": "Über uns"
+        },
+        {
             "to": "/posts",
             "label": "Posts"
         }

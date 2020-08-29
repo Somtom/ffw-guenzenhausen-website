@@ -1,6 +1,6 @@
-require('dotenv').config()
+import { STORYBLOK_TOKEN } from './helpers/config'
 
-const { STORYBLOK_TOKEN } = require('./helpers/config')
+require('dotenv').config()
 
 export default {
   /*
@@ -106,5 +106,9 @@ export default {
    ** Build configuration
    ** See https://nuxtjs.org/api/configuration-build/
    */
-  build: {},
+  build: {
+    extend(config, { isDev, isClient }) {
+      config.resolve.alias.vue = 'vue/dist/vue.common'
+    },
+  },
 }
