@@ -1,0 +1,20 @@
+{
+    "navItems": [
+        {
+            "to": "/home",
+            "label": "Home"
+        },
+        {
+            "to": "/alerts",
+            "label": "Einsätze"
+        },
+        {
+            "to": "/ueber-uns",
+            "label": "Über uns"
+        },
+        {
+            "to": "/posts",
+            "label": "Posts"
+        }
+    ]
+}

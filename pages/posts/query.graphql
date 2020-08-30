@@ -1,0 +1,17 @@
+query Posts($currentPage: Int $pageSize: Int $dateStart: String $dateEnd: String){
+  PostItems(sort_by:"first_published_at:desc" page:$currentPage per_page:$pageSize first_published_at_gt:$dateStart first_published_at_lt:$dateEnd){
+    total
+    items {
+      full_slug
+      content {
+        previewImage {
+            filename
+        }
+        title
+        text
+        time
+      }
+      first_published_at
+    }
+  }
+}
