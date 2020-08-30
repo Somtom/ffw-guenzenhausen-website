@@ -5,7 +5,7 @@
     >
       <span class="uppercase font-semibold text-xl">
         <nuxt-link to="/">
-          <img class="h-20" src="~/assets/logo.png" />
+          <img class="h-32" src="~/assets/ffw-logo.png" />
         </nuxt-link>
       </span>
 
