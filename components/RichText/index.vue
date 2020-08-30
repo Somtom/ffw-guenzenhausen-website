@@ -1,7 +1,7 @@
 <template>
-  <div>
+  <article>
     <VRuntimeTemplate :template="richtext" />
-  </div>
+  </article>
 </template>
 
 <script>
