@@ -31,7 +31,7 @@ async function getDiveraAlert(id, callback) {
 }
 
 function createStoryFromAlert(alert) {
-  const time = new Date(alert.ts_create * 1000)
+  const time = new Date(alert.date * 1000)
   const name = `${time.toISOString().substr(0, 10)} - ${alert.title}`
 
   const story = {
@@ -42,8 +42,18 @@ function createStoryFromAlert(alert) {
       component: 'AlertPost',
       title: alert.title || alert.message,
       time,
-      address: alert.address,
+      addressRaw: alert.address,
       message: alert.title,
+      text: {
+        content: [
+          {
+            type: 'text',
+            text:
+              'Beschreibung und Bilder folgen. Erstmal müssen wir uns um den Einsatz kümmern.',
+          },
+        ],
+        type: 'doc',
+      },
     },
   }
 
@@ -67,8 +77,8 @@ function createStoryFromAlert(alert) {
 exports.handler = function (event, context, callback) {
   let statusCode = 401
 
-  if (!ALERT_FUNCTION_TOKEN === event.queryStringParameters.token) {
-    callback(null, {
+  if (ALERT_FUNCTION_TOKEN !== event.queryStringParameters.token) {
+    return callback(null, {
       statusCode,
     })
   }
@@ -76,13 +86,19 @@ exports.handler = function (event, context, callback) {
   // Get alert data from Divera to be able to check if it is from the control center
   const webhookData = JSON.parse(event.body)
   getDiveraAlert(webhookData.id, callback).then((alert) => {
+    if (!alert) {
+      console.log('No alert received from Divera')
+      return callback(null, {
+        statusCode,
+      })
+    }
     console.log('Alert: ', alert)
     // Create alert story
     createStoryFromAlert(alert)
 
     statusCode = 200
 
-    callback(null, {
+    return callback(null, {
       statusCode,
     })
   })

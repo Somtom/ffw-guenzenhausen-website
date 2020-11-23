@@ -57,5 +57,9 @@ export default {
       return this.$storyapi.richTextResolver.render(this.text)
     },
   },
+
+  created() {
+    console.log(this.images)
+  },
 }
 </script>

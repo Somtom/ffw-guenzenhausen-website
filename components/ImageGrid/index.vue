@@ -10,6 +10,7 @@
     </div>
     <Modal :show-modal="modalOpen" @closed="closeImage">
       <img
+        v-if="modalImage"
         class="w-full mx-auto"
         :src="modalImage.filename"
         :alt="modalImage.name"
