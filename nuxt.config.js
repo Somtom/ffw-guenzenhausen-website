@@ -69,7 +69,6 @@ export default {
       {
         accessToken: STORYBLOK_TOKEN,
         cacheProvider: 'memory',
-        customParent: 'YOUR_URL_WHERE_RUN_STORYBLOK_APP', // optional https://www.storyblok.com/docs/Guides/storyblok-latest-js#storyblokinitconfig
       },
     ],
     '@nuxtjs/apollo',

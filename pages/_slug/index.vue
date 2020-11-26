@@ -1,6 +1,6 @@
 <template>
   <div>
-    <component :is="blok.component" v-bind="blok" />
+    <component :is="story.content.component" v-bind="story.content" />
   </div>
 </template>
 
@@ -16,8 +16,8 @@ export default {
 
   async asyncData({ $content, params, app, route, error }) {
     const res = await getStoryblokStory(app, route, error)
-    const blok = res.story.content
-    return { blok }
+    const story = res.story
+    return { story }
   },
 }
 </script>
