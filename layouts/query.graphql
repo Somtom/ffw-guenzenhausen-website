@@ -1,0 +1,10 @@
+query StoryContent{
+  ContentNode(id: "global-layout", resolve_relations: "author,category") {
+    content
+    first_published_at
+    id
+    alternates {
+      fullSlug
+    }
+  }
+}

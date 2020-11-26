@@ -31,10 +31,10 @@
         >
           <div class="text-sm lg:flex-grow">
             <NavItem
-              v-for="item in navItems"
+              v-for="item in navbarLinks"
               :key="item.to"
               :to="item.to"
-              :link-text="item.label"
+              :link-text="item.linkText"
             />
           </div>
         </div>
@@ -46,10 +46,10 @@
         class="hidden w-full flex justify-center flex-grow lg:flex lg:items-center lg:w-auto"
       >
         <NavItem
-          v-for="item in navItems"
+          v-for="item in navbarLinks"
           :key="item.to"
           :to="item.to"
-          :link-text="item.label"
+          :link-text="item.linkText"
         />
       </div>
     </div>
@@ -63,15 +63,16 @@ export default {
     NavItem,
   },
 
-  async fetch() {
-    const data = await this.$content('navigation').fetch()
-    this.navItems = data.navItems
+  props: {
+    navbarLinks: {
+      type: Array,
+      default: () => [],
+    },
   },
 
   data() {
     return {
       showMenu: false,
-      navItems: [],
     }
   },
 }

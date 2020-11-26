@@ -1,6 +1,6 @@
 <template>
   <div>
-    <LoadingSpinner v-if="$apollo.loading" />
+    <LoadingSpinner v-show="$apollo.loading" />
     <h1 class="mb-6">Beiträge</h1>
 
     <CustomSelect

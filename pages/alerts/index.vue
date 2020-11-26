@@ -1,5 +1,6 @@
 <template>
   <div>
+    <LoadingSpinner v-show="$apollo.loading" />
     <h1 class="mb-6">Einsatzübersicht</h1>
 
     <CustomSelect
@@ -26,6 +27,7 @@
 import AlertPreview from '@/components/AlertPreview'
 import Paginator from '@/components/Paginator'
 import CustomSelect from '@/components/CustomSelect'
+import LoadingSpinner from '@/components/LoadingSpinner'
 import query from './query.graphql'
 
 export default {
@@ -33,6 +35,7 @@ export default {
     AlertPreview,
     Paginator,
     CustomSelect,
+    LoadingSpinner,
   },
 
   data() {
