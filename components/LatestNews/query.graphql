@@ -1,0 +1,32 @@
+query LatestAlerts($pageSize: Int) {
+  AlertpostItems(sort_by: "created_at:desc", per_page: $pageSize) {
+    total
+    items {
+      full_slug
+      content {
+        address
+        previewImage {
+          filename
+        }
+        message
+        time
+        title
+      }
+    }
+  }
+  PostItems(sort_by:"first_published_at:desc" per_page:$pageSize){
+    total
+    items {
+      full_slug
+      content {
+        previewImage {
+            filename
+        }
+        title
+        text
+        time
+      }
+      first_published_at
+    }
+  }
+}

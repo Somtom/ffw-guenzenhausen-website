@@ -8,7 +8,6 @@ export default {
   },
 
   mounted() {
-    console.log(this.$storybridge)
     this.$storybridge.on('input', (event) => {
       if (event.story.id === this.story.id) {
         this.story.content = Object.entries(event.story.content).reduce(

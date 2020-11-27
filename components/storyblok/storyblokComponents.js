@@ -3,6 +3,7 @@ import Post from '@/components/Post'
 import RichText from '@/components/RichText'
 import ImageGrid from '@/components/ImageGrid'
 import SplitColumn from '@/components/SplitColumn'
+import LatestNews from '@/components/LatestNews'
 
 export default {
   AlertPost,
@@ -10,4 +11,5 @@ export default {
   RichText,
   ImageGrid,
   SplitColumn,
+  LatestNews,
 }
