@@ -19,6 +19,7 @@ export default {
   async asyncData({ $content, params, app, route, error }) {
     const res = await getStoryblokStory(app, route, error)
     const story = res.story
+    story.content.images = story.content.images || []
     return { story }
   },
 }

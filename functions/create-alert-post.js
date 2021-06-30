@@ -62,16 +62,18 @@ function createStoryFromAlert(alert) {
   const isTestAlert =
     regex.test(alert.title.toLocaleLowerCase()) ||
     regex.test(alert.title.toLocaleLowerCase())
-  const canBePublished = !isTestAlert && !alert.private_mode && alert.priority
+  const canBePublished = !isTestAlert && !alert.private_mode
   if (canBePublished) {
     story.publish = 1
-  }
 
-  Storyblok.post(`spaces/${STORYBLOK_SPACE_ID}/stories/`, {
-    story,
-  }).catch((error) => {
-    console.log(error)
-  })
+    Storyblok.post(`spaces/${STORYBLOK_SPACE_ID}/stories/`, {
+      story,
+    }).catch((error) => {
+      console.log(error)
+    })
+  } else {
+    console.log('Story cannot be published')
+  }
 }
 
 exports.handler = function (event, context, callback) {

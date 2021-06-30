@@ -9,7 +9,7 @@
 
     <RichText class="mt-8 text-xl" :text="text" />
 
-    <ImageGrid :images="images" />
+    <ImageGrid v-if="images.length" :images="images" />
   </article>
 </template>
 

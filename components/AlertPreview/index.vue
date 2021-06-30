@@ -45,7 +45,7 @@ export default {
     },
     address: {
       type: String,
-      required: true,
+      default: '',
     },
     message: {
       type: String,

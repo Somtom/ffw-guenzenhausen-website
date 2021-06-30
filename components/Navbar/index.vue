@@ -35,6 +35,7 @@
               :key="item.to"
               :to="item.to"
               :link-text="item.linkText"
+              :sub-items="item.subItems"
             />
           </div>
         </div>
@@ -50,6 +51,7 @@
           :key="item.to"
           :to="item.to"
           :link-text="item.linkText"
+          :sub-items="item.subItems"
         />
       </div>
     </div>
