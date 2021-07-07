@@ -9,13 +9,14 @@
       :title="title"
     />
 
-    <div class="mt-8 text-xl" v-html="htmlText"></div>
+    <div class="mt-8 text-xl" v-html="renderedMarkdown" />
 
     <ImageGrid :images="images" />
   </article>
 </template>
 
 <script>
+import md from '@/helpers/markdown-it'
 import AlertInfo from '@/components/AlertInfo'
 import ImageGrid from '@/components/ImageGrid'
 
@@ -43,7 +44,7 @@ export default {
       required: true,
     },
     text: {
-      type: Object,
+      type: String,
       default: () => {},
     },
     images: {
@@ -53,8 +54,8 @@ export default {
   },
 
   computed: {
-    htmlText() {
-      return this.$storyapi.richTextResolver.render(this.text)
+    renderedMarkdown() {
+      return md.render(this.text)
     },
   },
 }

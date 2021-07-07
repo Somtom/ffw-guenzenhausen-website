@@ -17,7 +17,9 @@ article {
     @apply text-lg leading-relaxed;
 }
   
-  
+ul {
+    @apply mt-2 mb-4 list-disc list-inside
+}
 
 @tailwind components;
 

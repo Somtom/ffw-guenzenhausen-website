@@ -7,22 +7,21 @@
       <div class="text-gray-400 mt-6">{{ formattedTime }}</div>
     </div>
 
-    <RichText class="mt-8 text-xl" :text="text" />
+    <div class="mt-8 text-xl" v-html="renderedMarkdown" />
 
     <ImageGrid v-if="images.length" :images="images" />
   </article>
 </template>
 
 <script>
+import md from '@/helpers/markdown-it'
 import PostHeader from '@/components/PostHeader'
 import ImageGrid from '@/components/ImageGrid'
-import RichText from '@/components/RichText'
 
 export default {
   components: {
     PostHeader,
     ImageGrid,
-    RichText,
   },
 
   props: {
@@ -35,7 +34,7 @@ export default {
       required: true,
     },
     text: {
-      type: Object,
+      type: String,
       default: () => {},
     },
     titleImage: {
@@ -53,8 +52,8 @@ export default {
       return new Date(this.time).toLocaleDateString()
     },
 
-    htmlText() {
-      return this.$storyapi.richTextResolver.render(this.text)
+    renderedMarkdown() {
+      return md.render(this.text)
     },
   },
 }
